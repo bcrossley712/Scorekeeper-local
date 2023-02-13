@@ -5,7 +5,7 @@ export class Player {
     this.id = data.id || generateId()
     this.sessionId = data.sessionId
     this.name = data.name
-    // this.scoring = data.scoring
+    this.totalScore = data.totalScore || 0
     // this.rules = data.rules
     // this.bidding = data.bidding || false
     // this.lowScoreWins = data.lowScoreWins || false
