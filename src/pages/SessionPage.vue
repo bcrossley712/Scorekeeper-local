@@ -43,19 +43,19 @@
   </div>
   <Modal id="player-add">
     <template #title>Add Player</template>
-    <template #body><PlayerAddForm /></template>
+    <template #body><AddPlayerForm /></template>
   </Modal>
   <Modal id="player-edit">
     <template #title>Edit Player?</template>
-    <template #body><PlayerEditForm /></template>
+    <template #body><EditPlayerForm /></template>
   </Modal>
   <Modal id="add-hand">
     <template #title>Add Hand</template>
-    <template #body><HandAddForm /></template>
+    <template #body><AddHandForm /></template>
   </Modal>
   <Modal id="edit-hand">
     <template #title>Edit Hand?</template>
-    <template #body><HandEditForm /></template>
+    <template #body><EditHandForm /></template>
   </Modal>
 </template>
 
@@ -68,8 +68,8 @@ import { AppState } from "../AppState";
 import { onMounted, watchEffect } from "@vue/runtime-core";
 import { sessionsService } from "../services/SessionsService";
 import { useRoute, useRouter } from "vue-router";
-// import { playersService } from "../services/PlayersService";
-// import { handsService } from "../services/HandsService";
+import { playersService } from "../services/PlayersService";
+import { handsService } from "../services/HandsService";
 import { gamesService } from "../services/GamesService";
 import { loadState } from "../utils/LocalStorage";
 export default {
