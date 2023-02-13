@@ -33,9 +33,23 @@
 </template>
 
 <script>
+import { computed, onMounted } from "@vue/runtime-core";
+import { AppState } from "../AppState";
+import { loadState } from "../utils/LocalStorage";
+import { router } from "../router";
 export default {
   setup() {
-    return {};
+    onMounted(() => {
+      loadState();
+      console.log(AppState.games);
+    });
+    return {
+      games: computed(() => AppState.games),
+      goTo(game) {
+        AppState.activeGame = game;
+        router.push({ name: "Game", params: { id: game.id } });
+      },
+    };
   },
 };
 </script>
@@ -59,5 +73,10 @@ export default {
       object-position: center;
     }
   }
+}
+.img-cover {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
 </style>

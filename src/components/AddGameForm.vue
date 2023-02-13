@@ -92,13 +92,18 @@
 import { ref } from "@vue/reactivity";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
-// import { gamesService } from "../services/GamesService";
+import { gamesService } from "../services/GamesService";
 import { Modal } from "bootstrap";
 export default {
   setup() {
     const editable = ref({});
     return {
       editable,
+      handleSubmit() {
+        gamesService.addGame(editable.value);
+        Modal.getOrCreateInstance(document.getElementById("add-game")).hide();
+        editable.value = {};
+      },
       // async handleSubmit() {
       //   try {
       //     await gamesService.addGame(editable.value)
