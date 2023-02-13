@@ -41,7 +41,7 @@ export default {
   setup() {
     onMounted(() => {
       loadState();
-      console.log(AppState.games);
+      // console.log(AppState.games);
     });
     return {
       games: computed(() => AppState.games),

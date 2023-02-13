@@ -34,7 +34,7 @@ import { ref } from "@vue/reactivity";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { watchEffect } from "@vue/runtime-core";
-// import { playersService } from "../services/PlayersService"
+import { playersService } from "../services/PlayersService";
 import { Modal } from "bootstrap";
 import { AppState } from "../AppState";
 export default {
@@ -51,7 +51,6 @@ export default {
           Modal.getOrCreateInstance(
             document.getElementById("player-edit")
           ).hide();
-          editable.value = {};
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");

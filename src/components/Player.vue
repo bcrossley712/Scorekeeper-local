@@ -75,6 +75,7 @@ export default {
       }),
       setActivePlayer() {
         AppState.activePlayer = props.player;
+        // console.log(AppState.activePlayer);
       },
     };
   },

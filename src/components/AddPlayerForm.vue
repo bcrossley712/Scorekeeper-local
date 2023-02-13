@@ -27,7 +27,7 @@ import { ref } from "@vue/reactivity";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { useRoute } from "vue-router";
-// import { playersService } from "../services/PlayersService"
+import { playersService } from "../services/PlayersService";
 import { Modal } from "bootstrap";
 export default {
   setup() {

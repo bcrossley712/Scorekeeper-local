@@ -56,6 +56,7 @@ export default {
     const router = useRouter();
     onMounted(async () => {
       loadState();
+      AppState.activeGame = AppState.games.find((g) => g.id == route.params.id);
       // try {
       //   AppState.activeGame = await gamesService.getGameById(route.params.id)
       //   await sessionsService.getGamesSessions(route.params.id)
@@ -66,7 +67,9 @@ export default {
       // }
     });
     return {
-      sessions: computed(() => AppState.sessions),
+      sessions: computed(() =>
+        AppState.sessions.filter((s) => s.gameId == AppState.activeGame.id)
+      ),
       game: computed(() => AppState.activeGame),
       // user: computed(() => AppState.user),
       goTo(id) {

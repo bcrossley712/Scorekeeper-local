@@ -9,13 +9,9 @@ export function saveState() {
   // JSON.Stringify turns the data into a special version of a string
   localStorage.setItem('Scorekeeper', JSON.stringify({
     games: AppState.games,
-    activeGame: AppState.activeGame,
     sessions: AppState.sessions,
-    activeSession: AppState.activeSession,
     players: AppState.players,
-    activePlayer: AppState.activePlayer,
     hands: AppState.hands,
-    activeHand: AppState.activeHand
   }))
 }
 export function loadState() {
@@ -27,12 +23,8 @@ export function loadState() {
   if (data != null) {
     // the data gets saved as POJOs so has to be turned back into classes
     AppState.games = data.games.map(g => new Game(g))
-    AppState.activeGame = new Game(data.activeGame)
     AppState.sessions = data.sessions.map(s => new Session(s))
-    AppState.activeSession = new Session(data.activeSession)
     AppState.players = data.players.map(p => new Player(p))
-    AppState.activePlayer = new Player(data.activePlayer)
     AppState.hands = data.hands.map(h => new Hand(h))
-    AppState.activeHand = new Hand(data.activeHand)
   }
 }

@@ -13,7 +13,7 @@
           v-model="editable.bid"
         />
       </div>
-      <div class="mb-3 col-4" v-if="game.bidding == true">
+      <div class="mb-3 col-4" v-if="game.title == 'Rook'">
         <label for="trump" class="form-label">trump</label>
         <input
           type="text"
@@ -75,7 +75,7 @@ import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { watchEffect } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
-// import { handsService } from "../services/HandsService"
+import { handsService } from "../services/HandsService";
 import { Modal } from "bootstrap";
 import { AppState } from "../AppState";
 export default {

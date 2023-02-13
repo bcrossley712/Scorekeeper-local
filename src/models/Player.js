@@ -2,9 +2,9 @@ import { generateId } from "../utils/generateId";
 
 export class Player {
   constructor(data) {
-    // this.id = data.id || generateId()
-    // this.title = data.title
-    // this.image = data.image
+    this.id = data.id || generateId()
+    this.sessionId = data.sessionId
+    this.name = data.name
     // this.scoring = data.scoring
     // this.rules = data.rules
     // this.bidding = data.bidding || false

@@ -6,7 +6,6 @@ class SessionsService {
   addSession(data) {
     let newSession = new Session(data)
     AppState.sessions = [...AppState.sessions, newSession]
-    AppState.activeSession = newSession;
     saveState()
     return newSession
   }

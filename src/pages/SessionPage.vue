@@ -82,6 +82,12 @@ export default {
     });
     onMounted(async () => {
       loadState();
+      AppState.activeSession = AppState.sessions.find(
+        (s) => s.id == route.params.id
+      );
+      AppState.activeGame = AppState.games.find(
+        (g) => g.id == AppState.activeSession.gameId
+      );
       // try {
       //   AppState.activeSession = await sessionsService.getSessionById(
       //     route.params.id
@@ -98,7 +104,9 @@ export default {
       // );
     });
     return {
-      players: computed(() => AppState.players),
+      players: computed(() =>
+        AppState.players.filter((p) => p.sessionId == AppState.activeSession.id)
+      ),
       game: computed(() => AppState.activeGame),
       // user: computed(() => AppState.user),
       session: computed(() => AppState.activeSession),
