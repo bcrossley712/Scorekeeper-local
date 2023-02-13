@@ -1,9 +1,12 @@
 import { AppState } from "../AppState";
 import { Game } from "../models/Game";
+import { Hand } from "../models/Hand";
+import { Player } from "../models/Player";
+import { Session } from "../models/Session";
 
 export function saveState() {
   // Save the current proxy state into local storage
-  // JSON.Stringiy turns the data into a special version of a string
+  // JSON.Stringify turns the data into a special version of a string
   localStorage.setItem('Scorekeeper', JSON.stringify({
     games: AppState.games,
     activeGame: AppState.activeGame,
@@ -22,9 +25,14 @@ export function loadState() {
   console.log('loaded data', data)
   // check for if data exists, cause we only want to try this if it does, will error otherwise
   if (data != null) {
-    // the data gets saved as POJOs so has to be turned back into pizza classes
-    // ProxyState.lists = data.lists.map(l => new List(l))
-    // ProxyState.tasks = data.tasks.map(t => new Task(t))
+    // the data gets saved as POJOs so has to be turned back into classes
     AppState.games = data.games.map(g => new Game(g))
+    AppState.activeGame = new Game(data.activeGame)
+    AppState.sessions = data.sessions.map(s => new Session(s))
+    AppState.activeSession = new Session(data.activeSession)
+    AppState.players = data.players.map(p => new Player(p))
+    AppState.activePlayer = new Player(data.activePlayer)
+    AppState.hands = data.hands.map(h => new Hand(h))
+    AppState.activeHand = new Hand(data.activeHand)
   }
 }

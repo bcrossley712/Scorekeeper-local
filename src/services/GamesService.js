@@ -7,5 +7,11 @@ class GamesService {
     AppState.games = [...AppState.games, new Game(data)]
     saveState()
   }
+  editGame(data) {
+    console.error("Not yet set up");
+  }
+  deleteGame(data) {
+    console.error("Not yet set up");
+  }
 }
 export const gamesService = new GamesService()

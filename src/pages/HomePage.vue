@@ -35,7 +35,7 @@
 <script>
 import { computed, onMounted } from "@vue/runtime-core";
 import { AppState } from "../AppState";
-import { loadState } from "../utils/LocalStorage";
+import { loadState, saveState } from "../utils/LocalStorage";
 import { router } from "../router";
 export default {
   setup() {
@@ -47,6 +47,7 @@ export default {
       games: computed(() => AppState.games),
       goTo(game) {
         AppState.activeGame = game;
+        saveState();
         router.push({ name: "Game", params: { id: game.id } });
       },
     };

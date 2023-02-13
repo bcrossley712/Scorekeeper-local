@@ -35,7 +35,7 @@
   </div>
   <Modal id="edit-game">
     <template #title>Edit Game?</template>
-    <template #body><GameEditForm /></template>
+    <template #body><EditGameForm /></template>
   </Modal>
 </template>
 
@@ -48,12 +48,14 @@ import { onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import { gamesService } from "../services/GamesService";
 import { AppState } from "../AppState";
-// import { sessionsService } from "../services/SessionsService";
+import { loadState, saveState } from "../utils/LocalStorage";
+import { sessionsService } from "../services/SessionsService";
 export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
     onMounted(async () => {
+      loadState();
       // try {
       //   AppState.activeGame = await gamesService.getGameById(route.params.id)
       //   await sessionsService.getGamesSessions(route.params.id)
@@ -71,16 +73,16 @@ export default {
         router.push({ name: "Session", params: { id: id } });
       },
       async newSession() {
-        // try {
-        //   const body = {
-        //     gameId: AppState.activeGame.id
-        //   }
-        //   const newSession = await sessionsService.addSession(body)
-        //   router.push({ name: "Session", params: { id: newSession.id } })
-        // } catch (error) {
-        //   logger.error(error)
-        //   Pop.toast(error.message, 'error')
-        // }
+        try {
+          const body = {
+            gameId: AppState.activeGame.id,
+          };
+          const newSession = await sessionsService.addSession(body);
+          router.push({ name: "Session", params: { id: newSession.id } });
+        } catch (error) {
+          logger.error(error);
+          Pop.toast(error.message, "error");
+        }
       },
     };
   },
