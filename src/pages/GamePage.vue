@@ -54,7 +54,7 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
-    onMounted(async () => {
+    onMounted(() => {
       loadState();
       AppState.activeGame = AppState.games.find((g) => g.id == route.params.id);
       // try {
@@ -75,12 +75,12 @@ export default {
       goTo(id) {
         router.push({ name: "Session", params: { id: id } });
       },
-      async newSession() {
+      newSession() {
         try {
           const body = {
             gameId: AppState.activeGame.id,
           };
-          const newSession = await sessionsService.addSession(body);
+          const newSession = sessionsService.addSession(body);
           router.push({ name: "Session", params: { id: newSession.id } });
         } catch (error) {
           logger.error(error);

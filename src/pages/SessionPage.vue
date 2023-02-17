@@ -80,7 +80,7 @@ export default {
     watchEffect(() => {
       editable.value = AppState.activeSession;
     });
-    onMounted(async () => {
+    onMounted(() => {
       loadState();
       AppState.activeSession = AppState.sessions.find(
         (s) => s.id == route.params.id
@@ -110,7 +110,7 @@ export default {
       game: computed(() => AppState.activeGame),
       // user: computed(() => AppState.user),
       session: computed(() => AppState.activeSession),
-      async addPlayer() {
+      addPlayer() {
         try {
           playersService.addPlayer(route.params.id);
         } catch (error) {
@@ -118,7 +118,7 @@ export default {
           Pop.toast(error.message, "error");
         }
       },
-      async archiveSession() {
+      archiveSession() {
         try {
           if (AppState.activeSession?.archived == false) {
             if (
@@ -154,14 +154,14 @@ export default {
           Pop.toast(error.message, "error");
         }
       },
-      async deleteSession() {
+      deleteSession() {
         try {
           if (await Pop.confirm("Delete Session?")) {
             router.push({
               name: "Game",
               params: { id: AppState.activeSession.gameId },
             });
-            await sessionsService.deleteSession(AppState.activeSession.id);
+            sessionsService.deleteSession(AppState.activeSession.id);
             Pop.toast("Session deleted", "success");
           }
         } catch (error) {
