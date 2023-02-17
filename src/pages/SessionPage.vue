@@ -118,7 +118,7 @@ export default {
           Pop.toast(error.message, "error");
         }
       },
-      archiveSession() {
+      async archiveSession() {
         try {
           if (AppState.activeSession?.archived == false) {
             if (
@@ -154,7 +154,7 @@ export default {
           Pop.toast(error.message, "error");
         }
       },
-      deleteSession() {
+      async deleteSession() {
         try {
           if (await Pop.confirm("Delete Session?")) {
             router.push({
