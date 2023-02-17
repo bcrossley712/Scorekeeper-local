@@ -39,8 +39,8 @@ import { loadState, saveState } from "../utils/LocalStorage";
 import { router } from "../router";
 export default {
   setup() {
-    onMounted(() => {
-      loadState();
+    onMounted(async () => {
+      await loadState();
       // console.log(AppState.games);
     });
     return {
