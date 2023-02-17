@@ -1,6 +1,6 @@
 // import '@mdi/font/css/materialdesignicons.css'
 //NOTE Bad import link
-// import 'bootstrap'
+import 'bootstrap'
 import { createApp } from 'vue'
 // @ts-ignore
 import App from './App.vue'
