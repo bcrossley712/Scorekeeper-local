@@ -33,13 +33,13 @@
 </template>
 
 <script>
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed, onMounted, watchEffect } from "@vue/runtime-core";
 import { AppState } from "../AppState";
 import { loadState, saveState } from "../utils/LocalStorage";
 import { router } from "../router";
 export default {
   setup() {
-    onMounted(() => {
+    watchEffect(() => {
       loadState();
       // console.log(AppState.games);
     });
